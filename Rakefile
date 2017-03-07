@@ -4,3 +4,7 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+task :install do
+  bundle install
+end
