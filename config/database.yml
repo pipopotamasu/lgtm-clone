@@ -13,13 +13,13 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password:
+  username: rails
+  password: NJe%Leay=4a<
   socket: /var/lib/mysql/mysql.sock
 
 development:
   <<: *default
-  database: yamato-murakami-hw_development
+  database: lgtm_clone
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
