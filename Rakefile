@@ -8,3 +8,14 @@ Rails.application.load_tasks
 task :install do
   bundle install
 end
+
+desc 'rspecのテストを実行(全ファイル)'
+task :test do
+  bundle exec rspec
+end
+
+# ex) rake target=spec/models test_target
+desc 'rspecのテストを実行(ファイル指定あり)'
+task :test_target do
+  bundle exec rspec ENV['target']
+end
