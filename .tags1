@@ -4,3 +4,18 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+default	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^default: &default$/;"	function	line:12
+adapter	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  adapter: mysql2$/;"	function	line:13
+encoding	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  encoding: utf8$/;"	function	line:14
+pool	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  pool: 5$/;"	function	line:15
+username	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  username: rails$/;"	function	line:16
+password	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  password: NJe%Leay=4a<$/;"	function	line:17
+socket	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  socket: \/var\/lib\/mysql\/mysql.sock$/;"	function	line:18
+development	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^development:$/;"	function	line:20
+database	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  database: lgtm_clone$/;"	function	line:22
+test	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^test:$/;"	function	line:27
+database	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  database: lgtm_clone_test$/;"	function	line:29
+production	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^production:$/;"	function	line:50
+database	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  database: yamato-murakami-hw_production$/;"	function	line:52
+username	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  username: yamato-murakami-hw$/;"	function	line:53
+password	/Users/yamatomurakami/vagrant/yamato-murakami-hw/config/database.yml	/^  password: <%= ENV['YAMATO-MURAKAMI-HW_DATABASE_PASSWORD'] %>$/;"	function	line:54
