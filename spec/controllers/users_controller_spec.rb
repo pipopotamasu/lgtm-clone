@@ -25,9 +25,15 @@ RSpec.describe UsersController, type: :controller do
       # 成功時はshowにリダイレクトするはず
       # assignsで新規登録したidをパラメータに付随させている
       # 以下でも大丈夫
-      #expect(response).to(redirect_to(user_path(assigns[:user])))
+      # expect(response).to(redirect_to(user_path(assigns[:user])))
+      # assigns・・・controllerのインスタンス変数にアクセス
       expect(response).to redirect_to user_path assigns[:user]
       expect(flash[:success]).not_to be_empty
+      # loginしているかを確認
+      # controllerのインスタンス変数を取得
+      user = assigns[:user]
+      expect(session[:user_id]).to eq user.id
+
     end
 
     it 'invalid signup information' do
