@@ -1,5 +1,27 @@
 AddIndexToUsersEmail	/Users/yamatomurakami/vagrant/yamato-murakami-hw/db/migrate/20170327143718_add_index_to_users_email.rb	/^class AddIndexToUsersEmail < ActiveRecord::Migration[5.0]$/;"	class	line:1
 change	/Users/yamatomurakami/vagrant/yamato-murakami-hw/db/migrate/20170327143718_add_index_to_users_email.rb	/^  def change$/;"	method	line:2	class:AddIndexToUsersEmail
+ApplicationController	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	class	line:1
+UsersController	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	class	line:2
+show	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def show$/;"	method	line:3	class:UsersController
+new	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def new$/;"	method	line:7	class:UsersController
+create	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def create$/;"	method	line:11	class:UsersController
+user_params	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def user_params$/;"	method	line:30	class:UsersController
+SessionsHelper	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^module SessionsHelper$/;"	module	line:1
+log_in	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def log_in(user)$/;"	method	line:3	class:SessionsHelper
+remember	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def remember(user)$/;"	method	line:8	class:SessionsHelper
+current_user	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def current_user$/;"	method	line:18	class:SessionsHelper
+logged_in?	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def logged_in?$/;"	method	line:32	class:SessionsHelper
+forget	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def forget(user)$/;"	method	line:37	class:SessionsHelper
+log_out	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def log_out$/;"	method	line:44	class:SessionsHelper
+User	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^class User < ApplicationRecord$/;"	class	line:1
+digest	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^  def self.digest(string)$/;"	singleton method	line:16	class:User
+new_token	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^  def self.new_token$/;"	singleton method	line:24	class:User
+remember	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^  def remember$/;"	method	line:29	class:User
+authenticated?	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^  def authenticated?(remember_token)$/;"	method	line:35	class:User
+forget	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^  def forget$/;"	method	line:42	class:User
+.checkbox	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/sessions.scss	/^.checkbox {$/;"	function	line:5
+span	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/sessions.scss	/^  span {$/;"	function	line:8
+#session_remember_me	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/sessions.scss	/^#session_remember_me {$/;"	function	line:14
 @mixin box_sizing	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/users.scss	/^@mixin box_sizing {$/;"	function	line:4
 .profile	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/users.scss	/^.profile {$/;"	function	line:10
 p	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/users.scss	/^  p {$/;"	function	line:15
@@ -10,20 +32,7 @@ input	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/us
 ul	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/users.scss	/^  ul {$/;"	function	line:38
 .field_with_errors	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/users.scss	/^.field_with_errors {$/;"	function	line:44
 .form-control	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/assets/stylesheets/users.scss	/^  .form-control {$/;"	function	line:46
-ApplicationController	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	class	line:1
-User	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^class User < ApplicationRecord$/;"	class	line:1
-digest	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/models/user.rb	/^  def User.digest(string)$/;"	singleton method	line:12	class:User
-UsersController	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^class UsersController < ApplicationController$/;"	class	line:2
-show	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def show$/;"	method	line:3	class:UsersController
-new	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def new$/;"	method	line:7	class:UsersController
-create	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def create$/;"	method	line:11	class:UsersController
-user_params	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/users_controller.rb	/^  def user_params$/;"	method	line:28	class:UsersController
-SessionsHelper	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^module SessionsHelper$/;"	module	line:1
-log_in	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def log_in(user)$/;"	method	line:3	class:SessionsHelper
-current_user	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def current_user$/;"	method	line:8	class:SessionsHelper
-logged_in?	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def logged_in?$/;"	method	line:14	class:SessionsHelper
-log_out	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/helpers/sessions_helper.rb	/^  def log_out$/;"	method	line:19	class:SessionsHelper
 SessionsController	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^class SessionsController < ApplicationController$/;"	class	line:1
-new	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^  def new$/;"	method	line:2	class:SessionsController
-create	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^  def create$/;"	method	line:5	class:SessionsController
-destroy	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^  def destroy$/;"	method	line:20	class:SessionsController
+new	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^  def new$/;"	method	line:3	class:SessionsController
+create	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^  def create$/;"	method	line:6	class:SessionsController
+destroy	/Users/yamatomurakami/vagrant/yamato-murakami-hw/app/controllers/sessions_controller.rb	/^  def destroy$/;"	method	line:22	class:SessionsController

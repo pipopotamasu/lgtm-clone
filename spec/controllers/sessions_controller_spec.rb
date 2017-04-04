@@ -27,15 +27,35 @@ RSpec.describe SessionsController, type: :controller do
       expect(flash[:danger]).to be_nil
     end
 
-    it 'valid login information' do
-      expect(session[:user_id]).to be_nil
-      # test用DBにFactoryGirlのuserを登録する
-      user = FactoryGirl.create(:user)
-      post :create, params: { session: { email: user.email, password: user.password } }
-      # 成功時はsessionにidが格納され、showテンプレートがレンダリングされるはず
-      expect(session[:user_id]).to eq user.id
-      # assigns・・・controllerのインスタンス変数にアクセス
-      expect(response).to redirect_to user_path assigns[:user]
+    describe 'valid login infomation' do
+      it 'with remember me' do
+        expect(session[:user_id]).to be_nil
+        # test用DBにFactoryGirlのuserを登録する
+        user = FactoryGirl.create(:user)
+        post :create, params: { session:
+          { email: user.email,
+            password: user.password,
+            remember_me: SessionsController::REMEMBER_ME_ON } }
+        # 成功時はsessionにidが格納され、showテンプレートがレンダリングされるはず
+        expect(session[:user_id]).to eq user.id
+        # assigns・・・controllerのインスタンス変数にアクセス
+        expect(response).to redirect_to user_path assigns[:user]
+        # remember meにチェックが入っていたら、cookieにtokenが格納されているはず
+        expect(cookies['remember_token']).not_to be_nil
+      end
+
+      it 'without remember me' do
+        expect(session[:user_id]).to be_nil
+        # test用DBにFactoryGirlのuserを登録する
+        user = FactoryGirl.create(:user)
+        post :create, params: { session: { email: user.email, password: user.password } }
+        # 成功時はsessionにidが格納され、showテンプレートがレンダリングされるはず
+        expect(session[:user_id]).to eq user.id
+        # assigns・・・controllerのインスタンス変数にアクセス
+        expect(response).to redirect_to user_path assigns[:user]
+        # remember meにチェックが入っていたら、cookieにtokenが格納されていないはず
+        expect(cookies['remember_token']).to be_nil
+      end
     end
   end
 
@@ -52,7 +72,6 @@ RSpec.describe SessionsController, type: :controller do
       delete :destroy
       # sessionが空になっていること
       expect(session[:user_id]).to be_nil
-
       # rootにリダイレクトしていること
       expect(response).to redirect_to root_url
 

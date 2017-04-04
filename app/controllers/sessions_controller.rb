@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  REMEMBER_ME_ON = '1'
   def new
   end
 
@@ -9,6 +10,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
       log_in @user
+      params[:session][:remember_me] == REMEMBER_ME_ON ? remember(@user) : forget(@user)
       redirect_to @user
     else
       # エラーメッセージを作成する
@@ -18,7 +20,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    # ログインしていたらログアウトする
+    log_out if logged_in?
     redirect_to root_url
   end
 end

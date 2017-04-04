@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     if @user.save
       # 保存の成功をここで扱う。
       log_in @user
+      # セッションの永続化
+      remember @user
       flash[:success] = 'Success to register!'
       redirect_to @user
     else
