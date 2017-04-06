@@ -16,6 +16,14 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <% if logged_in? && current_user.admin? %>
+        <%= f.label :admin do %>
+          <%= f.check_box :admin, class:"checkbox" %>
+          <span>Admin user</span>
+        <% end %>
+        <br>
+      <% end %>
+
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
   </div>
