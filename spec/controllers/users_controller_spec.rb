@@ -1,4 +1,10 @@
 require 'rails_helper'
+require 'helpers/helpers'
+
+# Helpersクラスのメソッドの読み込み
+RSpec.configure do |c|
+  c.include Helpers
+end
 
 RSpec.describe UsersController, type: :controller do
   describe 'GET #index' do
@@ -204,10 +210,4 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to redirect_to root_url
     end
   end
-
-  private
-
-    def login(user)
-      session[:user_id] = user.id
-    end
 end

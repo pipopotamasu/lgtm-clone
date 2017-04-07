@@ -3,6 +3,9 @@
     <nav>
       <ul class="nav navbar-nav navbar-left">
         <li><%= link_to "Home", root_url %></li>
+        <% if logged_in? %>
+          <li><%= link_to "Submit", upload_path %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'images/index'
+
+  get 'images/show'
+
+  get '/upload', to: 'images#new'
+  post '/upload', to: 'images#create'
+
   get 'sessions/new'
 
   get 'top_pages/index'
