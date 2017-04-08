@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :images
   # メンバ変数の定義
   attr_accessor :remember_token
 
