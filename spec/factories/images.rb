@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :image do
-    image "MyString"
-    user nil
+    image "test.jpg"
+    user_id nil
   end
 end
