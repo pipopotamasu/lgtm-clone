@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'images/index'
-
-  get 'images/show'
-
   get '/upload', to: 'images#new'
   post '/upload', to: 'images#create'
 
@@ -16,4 +12,5 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users
+  resources :images
 end

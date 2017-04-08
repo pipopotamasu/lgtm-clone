@@ -8,6 +8,7 @@
       <%= link_to user.name, user %>
       <% if current_user.admin? %>
       |
+      <!-- TODO:なぜかconfirmが動かない・・・ -->
       <%= link_to "delete", user, method: :delete,　data: { confirm: "Are you sure?" } %>
       <% end %>
     </li>

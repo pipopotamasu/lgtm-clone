@@ -1,11 +1,13 @@
 class ImagesController < ApplicationController
-  before_action :redirect_login_path_if_not_logged_in, only: [:new, :create]
+  before_action :redirect_login_path_if_not_logged_in, only: [:new, :create, :destroy]
   before_action :render_new_if_image_not_upload, only: [:create]
 
   def index
   end
 
   def show
+    @image = Image.find(params[:id])
+    @user = User.find(@image.user_id)
   end
 
   def new
@@ -21,6 +23,17 @@ class ImagesController < ApplicationController
     else
       flash.now[:danger] = "Failed to upload."
       render 'new'
+    end
+  end
+
+  def destroy
+    if current_user.admin?
+      Image.find(params[:id]).destroy
+      flash[:success] = 'Image deleted'
+      redirect_to root_url
+    else
+      flash.now[:danger] = 'Illegal operation and User.'
+      redirect_to root_url
     end
   end
 
