@@ -1,0 +1,8 @@
+- if object.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      The form contains #{pluralize(object.errors.count, "error")}.
+      / pluralize 第二引数の英単語を第一引数の数値によって複数形にしてくれる
+    %ul
+      - object.errors.full_messages.each do |msg|
+        %li= msg

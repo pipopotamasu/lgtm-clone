@@ -34,6 +34,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'carrierwave', '0.11.2'
 gem 'mini_magick', '4.5.1'
 gem 'fog', '1.38.0'
+gem 'haml', '~> 4.0', '>= 4.0.7'
+gem 'erb2haml', '~> 0.1.5'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-fileinput', '~> 2.5.0'
