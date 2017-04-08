@@ -1,2 +1,11 @@
-<h1>Images#show</h1>
-<p>Find me in app/views/images/show.html.erb</p>
+<div class='profile'>
+  <%= image_tag @image.image.url %>
+  <p>Uploaded User : <%= @user.name %> <br>
+     Uploaded at : <%= @user.created_at %> <br>
+     <% if logged_in? && current_user.admin? %>
+       <!-- TODO:なぜかconfirmが動かない・・・ -->
+       <%= link_to "delete", @image, method: :delete,　data: { confirm: "Are you sure?" } %>
+     <% end %>
+   </p>
+   <br>
+</div>

@@ -1,7 +1,9 @@
 <% @images.each do |image| %>
 <div class="col-md-2 col-sm-3 col-xs-6 browseImage">
   <% if image.image? %>
-    <%= image_tag image.image.url %>
+    <%= link_to image do %>
+      <%= image_tag image.image.url %>
+      <% end %>
   <% end %>
 </div>
 <% end %>
