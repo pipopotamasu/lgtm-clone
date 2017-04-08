@@ -1,0 +1,5 @@
+- @images.each do |image|
+  .col-md-2.col-sm-3.col-xs-6.browseImage
+    - if image.image?
+      = link_to image do
+        = image_tag image.image.url
