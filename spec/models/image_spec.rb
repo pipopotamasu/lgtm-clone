@@ -7,14 +7,12 @@ RSpec.describe Image, type: :model do
       ## build・・・modleオブジェクトの作成(dbに反映されない)
       ## create・・・modleオブジェクトの作成(dbに反映される)
       @user = FactoryGirl.create(:user)
-      @image = Image.new(image: 'hoge.jpg', user_id: @user.id)
+      @image = Image.new(image: fixture_file_upload('spec/factories/images/test.png', 'image/png'), user_id: @user.id)
     end
 
-    # モデルオブジェクト生成時、imageカラムがnullで返ってくるためテストに失敗する。
-    # TODO:おそらくMiniMagickが原因
-    # it 'should be valid' do
-    #   expect(@image).to be_valid
-    # end
+    it 'should be valid' do
+      expect(@image).to be_valid
+    end
 
     context 'user_id' do
       it 'user_id should be present' do
