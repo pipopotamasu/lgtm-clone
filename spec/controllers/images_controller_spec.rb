@@ -14,17 +14,15 @@ RSpec.describe ImagesController, type: :controller do
     end
   end
 
-  # モデルオブジェクト生成時、imageカラムがnullで返ってくるためテストに失敗する。
-  # TODO:おそらくMiniMagickが原因
-  # describe "GET #show" do
-  #   it "returns http success" do
-  #     @image = FactoryGirl.create(:image_already_created)
-  #     get :show, params: { id: @image }
-  #     expect(response).to be_success
-  #     expect(response).to have_http_status(200)
-  #     expect(response).to render_template('show')
-  #   end
-  # end
+  describe "GET #show" do
+    it "returns http success" do
+      @image = FactoryGirl.create(:image_already_created)
+      get :show, params: { id: @image }
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('show')
+    end
+  end
 
   describe "GET #new" do
     context 'not login' do
@@ -65,21 +63,19 @@ RSpec.describe ImagesController, type: :controller do
         login @user
       end
 
-      # モデルオブジェクト生成時、imageカラムがnullで返ってくるためテストに失敗する。
-      # TODO:おそらくMiniMagickが原因
-      # it "success to create" do
-      #   expect{
-      #       # パラメータと共にpostで投げる
-      #       post :create, params: { image: @image }
-      #       # 成功するとレコードが新規に登録されるはず
-      #     }.to change(Image, :count).by(1)
-      #
-      #   expect(response).to redirect_to root_path
-      #   expect(flash[:success]).not_to be_empty
-      # end
+      it "success to create" do
+        expect{
+            # パラメータと共にpostで投げる
+            post :create, params: { image: @image }
+            # 成功するとレコードが新規に登録されるはず
+          }.to change(Image, :count).by(1)
+
+        expect(response).to redirect_to root_path
+        expect(flash[:success]).not_to be_empty
+      end
 
       it "failed to create " do
-        @image.delete('image')
+        @image.clear()
         expect{
             # パラメータと共にpostで投げる
             post :create, params: { image: @image }
@@ -92,7 +88,37 @@ RSpec.describe ImagesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    # TODO:imageオブジェクトの生成ができないので後回し
-  end
+    it 'not login' do
+      @image = FactoryGirl.create(:image_already_created)
+      expect{
+            delete :destroy, params: { id: @image }
+          }.to change(User,:count).by(0)
+      expect(response).to redirect_to login_path
+      end
+    end
 
+    context 'logged in' do
+      before do
+        @image = FactoryGirl.create(:image_already_created)
+      end
+      it 'is not admine' do
+        @user = FactoryGirl.create(:user_2)
+        login @user
+        expect{
+              delete :destroy, params: { id: @image }
+        }.to change(User,:count).by(0)
+        expect(response).to redirect_to root_url
+        expect(flash[:danger]).not_to be_empty
+      end
+
+      it 'admin user' do
+        @user = FactoryGirl.create(:user_admin_2)
+        login @user
+        expect{
+              delete :destroy, params: { id: @image }
+        }.to change(Image,:count).by(-1)
+        expect(response).to redirect_to root_url
+        expect(flash[:success]).not_to be_empty
+      end
+    end
 end
