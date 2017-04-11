@@ -36,6 +36,7 @@ gem 'mini_magick', '4.5.1'
 gem 'fog', '1.38.0'
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'erb2haml', '~> 0.1.5'
+gem 'jquery-turbolinks'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-fileinput', '~> 2.5.0'
