@@ -1,5 +1,18 @@
 - @images.each do |image|
   .col-md-2.col-sm-3.col-xs-6.browseImage
     - if image.image?
-      = link_to image do
-        = image_tag image.image.url
+      .thumbnail
+        / 画像表示div
+        .image
+          = link_to image do
+            = image_tag image.image.url
+        / いいね、リポート数表示用div
+        - if logged_in?
+          .row
+          / いいね、リポートリンク用div
+          .row
+            .col-md-6.col-xs-6.col-sm-6
+              = form_for(image.evaluations.build) do |f|
+                = f.hidden_field :image_id, value: image.id
+                = f.hidden_field :evaluation, value: true
+                = f.submit "Good", class: "btn btn-primary"

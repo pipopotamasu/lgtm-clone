@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Evaluation, type: :model do
   # TODO:Destroyのテストも書きたい
+  # TODO:複合ユニークのテストも書きたい
+
   describe 'model validation' do
     before do
       # imageオブジェクトを作成するときに、:userをaccosiationに指定しているため、あえて:user_2を指定している
