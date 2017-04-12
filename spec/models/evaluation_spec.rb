@@ -26,12 +26,6 @@ RSpec.describe Evaluation, type: :model do
         @evaluation.image_id = ' '
         expect(@evaluation).not_to be_valid
       end
-
-      it 'evaluation should be present' do
-        # TODO:bool型のカラムを空にできなかったため、暫定処置
-        @evaluation = Evaluation.new(user_id: @user.id, image_id: @image.id)
-        expect(@evaluation).not_to be_valid
-      end
     end
   end
 end

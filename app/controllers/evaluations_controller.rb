@@ -7,7 +7,6 @@ class EvaluationsController < ApplicationController
       flash[:success] = "Success to evaluate!"
       redirect_to root_url
     else
-      p @evaluation
       flash[:danger] = "Failed to evaluate."
       redirect_to root_url
     end
