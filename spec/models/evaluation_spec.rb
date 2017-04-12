@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Evaluation, type: :model do
+  # TODO:Destroyのテストも書きたい
   describe 'model validation' do
     before do
-      # FactoryGirl
-      ## build・・・modleオブジェクトの作成(dbに反映されない)
-      ## create・・・modleオブジェクトの作成(dbに反映される)
-      @user = FactoryGirl.create(:user)
-      @image = FactoryGirl.create(:image)
-      @evaluation = Evaluation.new(user_id: @user.id, image_id: @image, evaluation: true)
+      # imageオブジェクトを作成するときに、:userをaccosiationに指定しているため、あえて:user_2を指定している
+      @user = FactoryGirl.create(:user_2)
+      @image = FactoryGirl.create(:image_already_created)
+      @evaluation = Evaluation.new(user_id: @user.id, image_id: @image.id, evaluation: true)
     end
 
     it 'should be valid' do
@@ -16,7 +15,21 @@ RSpec.describe Evaluation, type: :model do
     end
 
     context 'should be not valid' do
-    
+      it 'user_id should be present' do
+        @evaluation.user_id = ' '
+        expect(@evaluation).not_to be_valid
+      end
+
+      it 'image_id should be present' do
+        @evaluation.image_id = ' '
+        expect(@evaluation).not_to be_valid
+      end
+
+      it 'evaluation should be present' do
+        # TODO:bool型のカラムを空にできなかったため、暫定処置
+        @evaluation = Evaluation.new(user_id: @user.id, image_id: @image.id)
+        expect(@evaluation).not_to be_valid
+      end
     end
   end
 end

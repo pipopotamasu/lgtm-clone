@@ -1,6 +1,7 @@
 class Evaluation < ApplicationRecord
-  belongs_to :image_id, class_name: "Image"
-  belongs_to :user_id, class_name: "User"
+  belongs_to :image
+  belongs_to :user
   validates :image_id, presence: true
   validates :user_id, presence: true
+  validates :evaluation, presence: true
 end
