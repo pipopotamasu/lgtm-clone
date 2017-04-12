@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407013347) do
+ActiveRecord::Schema.define(version: 20170412005600) do
 
-  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "evaluations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "image_id"
+    t.integer  "user_id"
+    t.boolean  "evaluation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id", "user_id"], name: "index_evaluations_on_image_id_and_user_id", unique: true, using: :btree
+    t.index ["image_id"], name: "index_evaluations_on_image_id", using: :btree
+    t.index ["user_id"], name: "index_evaluations_on_user_id", using: :btree
+  end
+
+  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "image"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -21,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170407013347) do
     t.index ["user_id"], name: "index_images_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at",                      null: false

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :images
+  has_many :evaluations, dependent: :destroy
   # メンバ変数の定義
   attr_accessor :remember_token
 
