@@ -1,3 +1,155 @@
-# Use only ascii symbols in comments.
-AsciiComments:
- Enabled: false
+# This file overrides https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+AllCops:
+  Exclude:
+    # 自動生成されるファイルや外部ライブラリは制御できないのでチェック対象外
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'vendor/**/*'
+    - 'config/initializers/sorcery.rb'
+    # 自動生成コードのため
+    - 'config/environments/development.rb'
+    # テストデータ用のコードは横に長くなりがちなのでチェック対象外
+    - 'db/fixtures/**/*'
+    - 'spec/factories/*'
+  TargetRubyVersion: 2.3
+
+# Align ends corresponding to defs correctly
+Lint/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+# Checks that ABC (Assignment Branch Condition) size is not higher than the configured maximum
+Metrics/AbcSize:
+  # デフォルトの15は厳しすぎるので緩めている。25は守りたい
+  Max: 25
+  Exclude:
+    - 'app/controllers/concerns/authenticatable.rb'
+
+# Avoid long blocks with many lines
+Metrics/BlockLength:
+  # ファイル丸ごとブロックに入りそうなファイルは行数制限から外す
+  Exclude:
+    - "**/*_spec.rb"
+    - "**/*.rake"
+    - "config/environments/*.rb"
+    - "config/routes.rb"
+
+# Avoid classes longer than some maximum lines of code
+Metrics/ClassLength:
+  Max: 300
+
+# Limit lines to some maximum characters
+Metrics/LineLength:
+  Max: 120
+
+# Avoid methods longer than some maximum lines of code
+Metrics/MethodLength:
+  Max: 20
+
+# Avoid modules longer than some maximum lines of code
+Metrics/ModuleLength:
+  Max: 300
+
+# Align the elements of an array literal if they span more than one line
+Style/AlignArray:
+  Enabled: false
+
+# Use only ascii symbols in comments
+Style/AsciiComments:
+  Enabled: false
+
+# Avoid using {...} for multi-line blocks (multiline chaining is always ugly).
+# Prefer {...} over do...end for single-line blocks
+Style/BlockDelimiters:
+  Enabled: false
+
+# Checks style of children classes and modules
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Enforces consistent use of `Object#is_a?` or `Object#kind_of?`
+Style/ClassCheck:
+  Enabled: false
+
+# Checks for uses of unidiomatic method names from the Enumerable module
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: false
+    detect: false
+    find_all: false
+
+# Document classes and non-namespace modules
+Style/Documentation:
+  Enabled: false
+
+# This cop is designed to help upgrade to Ruby 3.0.
+# It will add the comment `# frozen_string_literal: true` to enable frozen string literals
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Favor modifier if/unless usage when you have a single-line body.
+Style/IfUnlessModifier:
+  Enabled: false
+
+# Checks for uses of the lambda literal syntax for single line lambdas,
+# and the method call syntax for multiline lambdas
+Style/Lambda:
+  # Scopeは複数行でも`-> { }`形式で揃えた方が見た目が綺麗だが、
+  # その他のケースでは`lambda do-end`を使ったほうが見やすい時もあるので。
+  Enabled: false
+
+# Checks indentation of method calls with the dot operator
+# that span more than one line
+Style/MultilineMethodCallIndentation:
+  Enabled: false
+
+# Checks indentation of binary operations that span more than one line
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# Checks for proper usage of fail and raise
+Style/SignalException:
+  Enabled: false
+
+# Enforces the names of some block params
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Checks that exactly one space is used between a method name
+# and the first argument for method calls without parentheses
+Style/SpaceBeforeFirstArg:
+  Enabled: false
+
+# Checks if uses of quotes match the configured preference
+Style/StringLiterals:
+  Enabled: false
+
+# Checks for trailing comma in array and hash literals
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Favor modifier while/until usage when you have a single-line body
+Style/WhileUntilModifier:
+  Enabled: false
+
+# Checks for use of parentheses around ternary conditions.
+Style/TernaryParentheses:
+  Enabled: false
+
+##################### Rails ##################################
+Rails:
+  Enabled: true
+
+# Prefer all.find_each over all.each
+Rails/FindEach:
+  Enabled: false
+
+# Checks for calls to puts, print, etc.
+Rails/Output:
+  Exclude:
+    # bin/ や config/ 下は標準出力に出すのが正しいスクリプトがあるので、除外
+    - 'bin/**/*'
+    - 'config/**/*'

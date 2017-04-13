@@ -1,9 +1,8 @@
 class ImagesController < ApplicationController
-  before_action :redirect_login_path_if_not_logged_in, only: [:new, :create, :destroy]
+  before_action :redirect_login_path_if_not_logged_in, only: %i[new create destroy]
   before_action :render_new_if_image_not_upload, only: [:create]
 
-  def index
-  end
+  def index; end
 
   def show
     @image = Image.find(params[:id])
@@ -30,24 +29,24 @@ class ImagesController < ApplicationController
     if current_user.admin?
       Image.find(params[:id]).destroy
       flash[:success] = 'Image deleted'
-      redirect_to root_url
     else
       flash.now[:danger] = 'Illegal operation and User.'
-      redirect_to root_url
     end
+    redirect_to root_url
   end
 
   private
-    # 画像がアップロードされていなければnewテンプレートに返す
-    def render_new_if_image_not_upload
-      if params[:image].nil?
-        flash.now[:danger] = "Input file."
-        @image = Image.new
-        render 'new'
-      end
-    end
 
-    def image_params
-      params.require(:image).permit(:image)
-    end
+  # 画像がアップロードされていなければnewテンプレートに返す
+  def render_new_if_image_not_upload
+    # 画像がアップロードされていれば処理しない
+    return unless params[:image].nil?
+    flash.now[:danger] = "Input file."
+    @image = Image.new
+    render 'new'
+  end
+
+  def image_params
+    params.require(:image).permit(:image)
+  end
 end

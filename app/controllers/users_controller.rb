@@ -1,6 +1,7 @@
 # hoge
 class UsersController < ApplicationController
-  before_action :is_right_user, only: [:index, :show, :destroy]
+  before_action :redirect_login_path_if_not_logged_in, only: %i[index show destroy]
+  before_action :redirect_to_root_if_not_right_user, only: %i[index show destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -70,21 +71,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def is_right_user
-    # ログインしているかどうか
-    if logged_in?
-      # admin権限を持っているかどうか
-      unless current_user.admin?
-        # 自身以外のshowページにアクセスしようとしているなら、rootページに遷移させる
-        if params[:id].to_i != current_user.id
-          flash[:danger] = 'Access denied.'
-          redirect_to root_url
-        end
-      end
-    else
-      # ログインしていなければログインページに遷移させる
-      flash[:danger] = 'Please log in.'
-      redirect_to login_path
-    end
+  def redirect_to_root_if_not_right_user
+    # admin権限を持っていれば処理しない
+    return if current_user.admin?
+    # 自身のshowページにアクセスしようとしているなら処理しない
+    return if params[:id].to_i == current_user.id
+    # 上記以外の場合、つまりadmin権限がないにも関わらず他人にアクセスしようとしている時はrootに返す
+    flash[:danger] = 'Access denied.'
+    redirect_to root_url
   end
 end

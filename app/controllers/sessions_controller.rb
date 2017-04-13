@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
-  REMEMBER_ME_ON = '1'
-  def new
-  end
+  REMEMBER_ME_ON = '1'.freeze
+  def new; end
 
   def create
     # モデルから対象となるユーザを取得

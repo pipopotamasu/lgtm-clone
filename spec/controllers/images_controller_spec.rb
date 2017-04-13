@@ -6,7 +6,6 @@ RSpec.configure do |c|
 end
 
 RSpec.describe ImagesController, type: :controller do
-
   describe "GET #index" do
     it "returns http success" do
       get :index
@@ -48,10 +47,10 @@ RSpec.describe ImagesController, type: :controller do
   describe 'Post #create' do
     it 'not login' do
       @image = FactoryGirl.attributes_for(:image)
-      expect{
-          # パラメータと共にpostで投げる
-          post :create, params: { image: @image }
-        }.to change(Image, :count).by(0)
+      expect {
+        # パラメータと共にpostで投げる
+        post :create, params: { image: @image }
+      }.to change(Image, :count).by(0)
       expect(response).to redirect_to login_path
       expect(flash[:danger]).not_to be_empty
     end
@@ -64,22 +63,22 @@ RSpec.describe ImagesController, type: :controller do
       end
 
       it "success to create" do
-        expect{
-            # パラメータと共にpostで投げる
-            post :create, params: { image: @image }
-            # 成功するとレコードが新規に登録されるはず
-          }.to change(Image, :count).by(1)
+        expect {
+          # パラメータと共にpostで投げる
+          post :create, params: { image: @image }
+          # 成功するとレコードが新規に登録されるはず
+        }.to change(Image, :count).by(1)
 
         expect(response).to redirect_to root_path
         expect(flash[:success]).not_to be_empty
       end
 
       it "failed to create " do
-        @image.clear()
-        expect{
-            # パラメータと共にpostで投げる
-            post :create, params: { image: @image }
-          }.to change(Image, :count).by(0)
+        @image.clear
+        expect {
+          # パラメータと共にpostで投げる
+          post :create, params: { image: @image }
+        }.to change(Image, :count).by(0)
 
         expect(response).to render_template('new')
         expect(flash[:danger]).not_to be_empty
@@ -90,35 +89,35 @@ RSpec.describe ImagesController, type: :controller do
   describe "DELETE #destroy" do
     it 'not login' do
       @image = FactoryGirl.create(:image_already_created)
-      expect{
-            delete :destroy, params: { id: @image }
-          }.to change(User,:count).by(0)
+      expect {
+        delete :destroy, params: { id: @image }
+      }.to change(User, :count).by(0)
       expect(response).to redirect_to login_path
-      end
+    end
+  end
+
+  context 'logged in' do
+    before do
+      @image = FactoryGirl.create(:image_already_created)
+    end
+    it 'is not admine' do
+      @user = FactoryGirl.create(:user_2)
+      login @user
+      expect {
+        delete :destroy, params: { id: @image }
+      }.to change(User, :count).by(0)
+      expect(response).to redirect_to root_url
+      expect(flash[:danger]).not_to be_empty
     end
 
-    context 'logged in' do
-      before do
-        @image = FactoryGirl.create(:image_already_created)
-      end
-      it 'is not admine' do
-        @user = FactoryGirl.create(:user_2)
-        login @user
-        expect{
-              delete :destroy, params: { id: @image }
-        }.to change(User,:count).by(0)
-        expect(response).to redirect_to root_url
-        expect(flash[:danger]).not_to be_empty
-      end
-
-      it 'admin user' do
-        @user = FactoryGirl.create(:user_admin_2)
-        login @user
-        expect{
-              delete :destroy, params: { id: @image }
-        }.to change(Image,:count).by(-1)
-        expect(response).to redirect_to root_url
-        expect(flash[:success]).not_to be_empty
-      end
+    it 'admin user' do
+      @user = FactoryGirl.create(:user_admin_2)
+      login @user
+      expect {
+        delete :destroy, params: { id: @image }
+      }.to change(Image, :count).by(-1)
+      expect(response).to redirect_to root_url
+      expect(flash[:success]).not_to be_empty
     end
+  end
 end

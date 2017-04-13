@@ -91,11 +91,11 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'valid signup information' do
-        expect{
-            # パラメータと共にpostで投げる
-              post :create, params: { user: @params }
-            # 成功するとレコードが新規に登録されるはず
-          }.to change(User, :count).by(1)
+        expect {
+          # パラメータと共にpostで投げる
+          post :create, params: { user: @params }
+          # 成功するとレコードが新規に登録されるはず
+        }.to change(User, :count).by(1)
         # 成功時はshowにリダイレクトするはず
         # assignsで新規登録したidをパラメータに付随させている
         # 以下でも大丈夫
@@ -112,11 +112,11 @@ RSpec.describe UsersController, type: :controller do
       it 'invalid signup information' do
         # invalidにするためnameを空にする
         @params[:name] = ''
-        expect{
-            # パラメータと共にpostで投げる
-              post :create, params: { user: @params }
-            # 失敗するとレコードが新規にできないはず
-            }.to change(User, :count).by(0)
+        expect {
+          # パラメータと共にpostで投げる
+          post :create, params: { user: @params }
+          # 失敗するとレコードが新規にできないはず
+        }.to change(User, :count).by(0)
         # 失敗時はnewテンプレートがレンダリングされるはず
         expect(response).to render_template('new')
       end
@@ -138,11 +138,11 @@ RSpec.describe UsersController, type: :controller do
           login @user_admin
         end
         it 'valid signup information' do
-          expect{
-              # パラメータと共にpostで投げる
-                post :create, params: { user: @params_admin }
-              # 成功するとレコードが新規に登録されるはず
-            }.to change(User, :count).by(1)
+          expect {
+            # パラメータと共にpostで投げる
+            post :create, params: { user: @params_admin }
+            # 成功するとレコードが新規に登録されるはず
+          }.to change(User, :count).by(1)
           # 成功時はshowにリダイレクトするはず
           # assignsで新規登録したidをパラメータに付随させている
           # 以下でも大丈夫
@@ -155,11 +155,11 @@ RSpec.describe UsersController, type: :controller do
         it 'invalid signup information' do
           # invalidにするためnameを空にする
           @params_admin[:name] = ''
-          expect{
-              # パラメータと共にpostで投げる
-                post :create, params: { user: @params_admin }
-              # 失敗するとレコードが新規にできないはず
-              }.to change(User, :count).by(0)
+          expect {
+            # パラメータと共にpostで投げる
+            post :create, params: { user: @params_admin }
+            # 失敗するとレコードが新規にできないはず
+          }.to change(User, :count).by(0)
           # 失敗時はnewテンプレートがレンダリングされるはず
           expect(response).to render_template('new')
         end
@@ -171,11 +171,11 @@ RSpec.describe UsersController, type: :controller do
         end
 
         it 'failed to create admin user' do
-          expect{
-              # パラメータと共にpostで投げる
-                post :create, params: { user: @params_admin }
-              # 成功するとレコードが新規に登録されるはず
-            }.to change(User, :count).by(0)
+          expect {
+            # パラメータと共にpostで投げる
+            post :create, params: { user: @params_admin }
+            # 成功するとレコードが新規に登録されるはず
+          }.to change(User, :count).by(0)
           # 成功時はshowにリダイレクトするはず
           # assignsで新規登録したidをパラメータに付随させている
           # 以下でも大丈夫
@@ -196,17 +196,17 @@ RSpec.describe UsersController, type: :controller do
 
     it 'delete by admin user(success to delete)' do
       login @user_admin
-      expect{
-            delete :destroy, params: { id: @user_not_admin }
-          }.to change(User,:count).by(-1)
+      expect {
+        delete :destroy, params: { id: @user_not_admin }
+      }.to change(User, :count).by(-1)
       expect(response).to redirect_to users_path
     end
 
     it 'delete by not admin user(failed to delete)' do
       login @user_not_admin
-      expect{
-            delete :destroy, params: { id: @user_admin }
-          }.to change(User,:count).by(0)
+      expect {
+        delete :destroy, params: { id: @user_admin }
+      }.to change(User, :count).by(0)
       expect(response).to redirect_to root_url
     end
   end

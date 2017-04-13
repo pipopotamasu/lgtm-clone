@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # メンバ変数の定義
   attr_accessor :remember_token
 
-  before_save { self.email = self.email.downcase }
+  before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 100 },
@@ -17,8 +17,7 @@ class User < ApplicationRecord
   # User.digestはstaticメソッドの定義
   def self.digest(string)
     # costとは、生成するパスワードハッシュの複雑さのこと。サンプルアプリのためminで設定しておく
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -30,7 +29,7 @@ class User < ApplicationRecord
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
     self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    update(remember_digest: User.digest(remember_token))
   end
 
   # 渡されたトークンがダイジェストと一致したらtrueを返す
@@ -42,6 +41,6 @@ class User < ApplicationRecord
 
   # ユーザーのログイン情報を破棄する
   def forget
-    update_attribute(:remember_digest, nil)
+    update(remember_digest: nil)
   end
 end

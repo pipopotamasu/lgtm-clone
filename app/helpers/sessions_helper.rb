@@ -34,10 +34,9 @@ module SessionsHelper
   end
 
   def redirect_login_path_if_not_logged_in
-    unless logged_in?
-      flash[:danger] = 'Please Log in.'
-      redirect_to login_path
-    end
+    return if logged_in?
+    flash[:danger] = 'Please Log in.'
+    redirect_to login_path
   end
 
   # 永続的セッションを破棄する

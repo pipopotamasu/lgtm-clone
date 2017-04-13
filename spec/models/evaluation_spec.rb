@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Evaluation, type: :model do
-  # TODO:Destroyのテストも書きたい
+  # TODO: Destroyのテストも書きたい
   # TODO:複合ユニークのテストも書きたい
 
   describe 'model validation' do
