@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-
   describe "GET #new" do
     it "returns http success" do
       get :new
@@ -74,7 +73,6 @@ RSpec.describe SessionsController, type: :controller do
       expect(session[:user_id]).to be_nil
       # rootにリダイレクトしていること
       expect(response).to redirect_to root_url
-
     end
   end
 end

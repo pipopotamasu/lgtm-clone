@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe TopPagesController, :type => :controller do
+RSpec.describe TopPagesController, type: :controller do
   describe 'GET #index' do
     it 'should get index' do
       get :index

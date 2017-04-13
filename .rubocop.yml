@@ -7,6 +7,8 @@ AllCops:
     - 'db/migrate/*'
     - 'vendor/**/*'
     - 'config/initializers/sorcery.rb'
+    # 自動生成コードのため
+    - 'config/environments/development.rb'
     # テストデータ用のコードは横に長くなりがちなのでチェック対象外
     - 'db/fixtures/**/*'
     - 'spec/factories/*'
