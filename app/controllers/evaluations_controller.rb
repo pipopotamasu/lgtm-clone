@@ -4,15 +4,27 @@ class EvaluationsController < ApplicationController
   def create
     @evaluation = current_user.evaluations.build(evaluation_params)
     if @evaluation.save
-      flash[:success] = "Success to evaluate!"
-      redirect_to root_url
+      @image = Image.find(@evaluation.image_id)
     else
       flash[:danger] = "Failed to evaluate."
-      redirect_to root_url
+    end
+
+    # 通常の同期的リクエストならformat.htmlの処理
+    # 非同期リクエストならformat.jsの処理が実行される
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
     end
   end
 
   def destroy
+    evaluation = Evaluation.find(params[:id])
+    @image = Image.find(evaluation.image_id)
+    evaluation.destroy
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js
+    end
   end
 
 

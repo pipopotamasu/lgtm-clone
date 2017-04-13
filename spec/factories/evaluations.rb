@@ -4,7 +4,7 @@ FactoryGirl.define do
     evaluation Evaluation::GOOD
   end
 
-  factory :evaluation_dup , class: Evaluation do
+  factory :evaluation , class: Evaluation do
     image_id nil
     user_id nil
     evaluation Evaluation::GOOD

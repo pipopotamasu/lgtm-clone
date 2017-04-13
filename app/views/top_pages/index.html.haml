@@ -8,20 +8,6 @@
             = image_tag image.image.url
         - if logged_in?
           / いいね、リポート数表示用div
-          .row
-            .col-md-6.col-xs-6.col-sm-6.text-center
-              = get_good_count image.id
-            .col-md-6.col-xs-6.col-sm-6.count.text-center
-              = get_bad_count image.id
+          = render 'shared/evaluation_count', image_id: image.id
           / いいね、リポートリンク用div
-          .row
-            .col-md-6.col-xs-6.col-sm-6
-              = form_for(image.evaluations.build) do |f|
-                = f.hidden_field :image_id, value: image.id
-                = f.hidden_field :evaluation, value: Evaluation::GOOD
-                = f.submit "Good", class: "btn btn-primary"
-            .col-md-6.col-xs-6.col-sm-6
-              = form_for(image.evaluations.build) do |f|
-                = f.hidden_field :image_id, value: image.id
-                = f.hidden_field :evaluation, value: Evaluation::BAD
-                = f.submit "Bad", class: "btn btn-danger"
+          = render 'shared/evaluation_form', image: image

@@ -1,0 +1,7 @@
+:plain
+  $("#evaluation_count_#{@evaluation.image_id}").replaceWith(
+    "#{escape_javascript(render 'shared/evaluation_count', image_id: @evaluation.image_id)}"
+  );
+  $("#evaluation_form_#{@evaluation.image_id}").replaceWith(
+    "#{escape_javascript(render 'shared/evaluation_form', image: @image)}"
+  );

@@ -1,0 +1,30 @@
+%div{ class: "row", id: "evaluation_form_#{image.id}" }
+  - if !current_user_already_evaluated?( current_user.id, image.id )
+    .col-md-6.col-xs-6.col-sm-6
+      = form_for(image.evaluations.build, remote:true) do |f|
+        = f.hidden_field :image_id, value: image.id
+        = f.hidden_field :evaluation, value: Evaluation::GOOD
+        = f.submit "Good", class: "btn btn-primary"
+    .col-md-6.col-xs-6.col-sm-6
+      = form_for(image.evaluations.build, remote:true) do |f|
+        = f.hidden_field :image_id, value: image.id
+        = f.hidden_field :evaluation, value: Evaluation::BAD
+        = f.submit "Bad", class: "btn btn-danger"
+  - elsif current_user_evaluated_as_good?( current_user.id, image.id )
+    .col-md-6.col-xs-6.col-sm-6
+      = form_for(image.evaluations.find_by( user_id: current_user.id, image_id: image.id), html: { method: :delete }, remote: true) do |f|
+        = f.submit "Good", class: "btn btn-cancel"
+    .col-md-6.col-xs-6.col-sm-6
+      = form_for(image.evaluations.build, remote:true) do |f|
+        = f.hidden_field :image_id, value: image.id
+        = f.hidden_field :evaluation, value: Evaluation::BAD
+        = f.submit "Bad", class: "btn btn-danger", disabled: true
+  - else
+    .col-md-6.col-xs-6.col-sm-6
+      = form_for(image.evaluations.build, remote:true) do |f|
+        = f.hidden_field :image_id, value: image.id
+        = f.hidden_field :evaluation, value: Evaluation::GOOD
+        = f.submit "Good", class: "btn btn-primary", disabled: true
+    .col-md-6.col-xs-6.col-sm-6
+      = form_for(image.evaluations.find_by( user_id: current_user.id, image_id: image.id), html: { method: :delete }, remote: true) do |f|
+        = f.submit "Bad", class: "btn btn-cancel"
