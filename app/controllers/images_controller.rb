@@ -38,14 +38,6 @@ class ImagesController < ApplicationController
   end
 
   private
-
-    def redirect_login_path_if_not_logged_in
-      unless logged_in?
-        flash[:danger] = 'Please Log in.'
-        redirect_to login_path
-      end
-    end
-
     # 画像がアップロードされていなければnewテンプレートに返す
     def render_new_if_image_not_upload
       if params[:image].nil?

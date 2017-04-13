@@ -29,14 +29,6 @@ class EvaluationsController < ApplicationController
 
 
   private
-    # TODO:images_contorllerと処理を統一する
-    def redirect_login_path_if_not_logged_in
-      unless logged_in?
-        flash[:danger] = 'Please Log in.'
-        redirect_to login_path
-      end
-    end
-
     def evaluation_params
       params.require(:evaluation).permit(:image_id, :evaluation)
     end
