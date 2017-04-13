@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'evaluations/create'
+
+  get 'evaluations/destroy'
+
   get '/upload', to: 'images#new'
   post '/upload', to: 'images#create'
 
@@ -13,4 +17,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users
   resources :images
+  resources :evaluations , only: [:create, :destroy]
 end

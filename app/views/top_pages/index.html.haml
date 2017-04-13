@@ -1,5 +1,13 @@
 - @images.each do |image|
   .col-md-2.col-sm-3.col-xs-6.browseImage
     - if image.image?
-      = link_to image do
-        = image_tag image.image.url
+      .thumbnail
+        / 画像表示div
+        .image
+          = link_to image do
+            = image_tag image.image.url
+        - if logged_in?
+          / いいね、リポート数表示用div
+          = render 'shared/evaluation_count', image_id: image.id
+          / いいね、リポートリンク用div
+          = render 'shared/evaluation_form', image: image

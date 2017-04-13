@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 開発環境構築でやること
 
-Things you may want to cover:
+1. rails 5をインストールする
+2. VMの接続をnfsにする
+3. 3000番ポートをgeustOS用に開ける
+4. MysqlのユーザとDB作る
 
-* Ruby version
 
-* System dependencies
+## 本番環境構築でやること
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. ImageMagickをyum installする
+`sudo yum install ImageMagick ImageMagick-devel -y`

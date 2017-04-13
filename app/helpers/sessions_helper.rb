@@ -33,6 +33,13 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def redirect_login_path_if_not_logged_in
+    unless logged_in?
+      flash[:danger] = 'Please Log in.'
+      redirect_to login_path
+    end
+  end
+
   # 永続的セッションを破棄する
   def forget(user)
     user.forget
