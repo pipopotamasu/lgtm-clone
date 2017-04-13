@@ -1,11 +1,14 @@
-.profile
-  = image_tag @image.image.url
-  %p
-    Uploaded User : #{@user.name}
-    %br/
-    Uploaded at : #{@user.created_at}
-    %br/
-    - if logged_in? && current_user.admin?
-      / TODO:なぜかconfirmが動かない・・・
-      = link_to "delete", @image, method: :delete,　data: { confirm: "Are you sure?" }
+.profile.col-md-2.col-sm-3.col-xs-6.browseImage
+  .thumbnail
+    = image_tag @image.image.url
+.info
+  Uploaded User : #{@user.name}
   %br/
+  Uploaded at : #{@user.created_at}
+  %br/
+  / TODO:ヘルパーに画像の絶対パス取得メソッドを作成する
+  / TODO:環境により、パスの内容を変更する
+  MarkDown : #{ImagesController::MARL_DOWN_TEMPLATE.gsub!(/hosturl/, request.host + @image.image.url)}
+  - if logged_in? && current_user.admin?
+    / TODO:なぜかconfirmが動かない・・・
+    = link_to "delete", @image, method: :delete,　data: { confirm: "Are you sure?" }

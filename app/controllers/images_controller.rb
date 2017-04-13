@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action :redirect_login_path_if_not_logged_in, only: %i[new create destroy]
   before_action :render_new_if_image_not_upload, only: [:create]
+  MARL_DOWN_TEMPLATE = '![LGTM](https://hosturl "LGTM")'
 
   def index; end
 
