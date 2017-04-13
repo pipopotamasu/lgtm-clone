@@ -14,7 +14,7 @@ AllCops:
 
 # Align ends corresponding to defs correctly
 Lint/EndAlignment:
-  AlignWith: variable
+  EnforcedStyleAlignWith: variable
 
 # Checks that ABC (Assignment Branch Condition) size is not higher than the configured maximum
 Metrics/AbcSize:
