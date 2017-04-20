@@ -53,6 +53,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails', '~> 4.5'
   gem 'rspec-rails', '~> 3.4'
+  gem 'metric_fu', git: 'https://github.com/metricfu/metric_fu.git'
 end
 
 group :test do
